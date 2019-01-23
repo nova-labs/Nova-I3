@@ -2,9 +2,8 @@ A collection of parts that I use for my Graber i3 printers.  Original lasercut b
 <br><br>
 Now featuring dual-strusion, including some parts I am using to convert my old Prusa v2 into a dual-extruder bowden machine.
 <br><br>
-<h4>Bill of Materails uploaded!</h4>
-The full BOM is up: <pre>Paul's Prusa i3 kit - BOM.pdf</pre>
-It includes everything I could think of.
+<h4>Instructions!</h4>
+Instructions are up on the Nova Labs wiki: https://nova-labs.org/wiki/novai3
 <br><br>
 <br><br>
 <h5>Tools</h5>
