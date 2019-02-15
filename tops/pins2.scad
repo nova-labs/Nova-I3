@@ -38,7 +38,7 @@ $fn=6;
 //	pinhole(fixed=false);
 //}
 
-module pin(r=3.5,l=13,d=2.4,slot=10,nub=0.4,t=1.8,space=0.3,flat=0)
+module pin(r=3.5,l=13,d=2.4,slot=8,nub=0.4,t=1.8,space=0.3,flat=0)
 //translate(flat*[0,0,r/sqrt(2)-space])rotate([0,0,0])
 difference(){
 	rotate([-90,0,0])intersection(){
@@ -81,5 +81,5 @@ intersection(){
 module pinpeg(r=3.5,l=13,d=2.4,nub=0.4,t=1.8,space=0.3)
 union(){
 	pin(r=r,l=l,d=d,nub=nub,t=t,space=space,flat=.5);
-	mirror([0,1,0])pin(r=r,l=l,d=d,nub=nub,t=t,space=space,flat=0);
+	mirror([0,1,0])pin(r=r,l=l,d=d,nub=nub,t=t,space=space,flat=.5);
 }
