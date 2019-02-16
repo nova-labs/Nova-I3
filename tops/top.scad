@@ -1,5 +1,6 @@
 use <pins2.scad>
-part = 2;
+in = 25.4;
+part = 3;
 
 if(part == 0)
     top_shaft();
@@ -12,6 +13,9 @@ if(part == 2)
         pinpeg(r=pin_rad,l=pin_len,d=3,nub=pin_nub,t=pin_thick,space=slop);
         for(i=[0,1]) mirror([0,0,i]) translate([0,0,pin_rad+25-1.5]) cube([50,50,50], center=true);
     }
+    
+if(part == 3)
+    laser_template();
 
 if(part == 10)
     assembled();
@@ -22,7 +26,6 @@ shaft_rad = 8;
 shaft_length = 30;
 base_rad = 17;
 base_height = 19;
-
 
 
 module assembled(){
@@ -50,6 +53,15 @@ gap = 0;
 slop = .25;
 
 $fn=60;
+
+module laser_template(){
+    projection() difference(){
+        cylinder(r=in*1.5, h=1, center=true);
+        rotate([90,0,0]) hull(){
+            pinpeg(r=pin_rad,l=pin_len,d=3,nub=pin_nub,t=pin_thick,space=slop);
+        }
+    }
+}
 
 module gear_text(gear_h = 7){
     gear_outer_rad = 19;
