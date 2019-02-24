@@ -31,8 +31,8 @@ hotend_rad  = 23;
 fan_screw_sep = 24;
 thin_wall = 2;
 
-rotate([90,0,0]) diffir_drop_mount();
-//groovemount_fan_ir_clamp();
+//rotate([90,0,0]) diffir_drop_mount();
+groovemount_fan_ir_clamp(ir = false);
 
 $fs = 1;
 
@@ -65,7 +65,9 @@ module diffir_drop_mount(adjust_height = 29, mount_drop = 39){
     }
 }
 
-module groovemount_fan_ir_clamp(){
+module groovemount_fan_ir_clamp(ir = true){
+    fan_drop = -fan_screw_sep/2-m3_rad+.1-1;
+    ir_drop = fan_drop*2-.5;
     difference(){
         union(){
             //mount the hotend
@@ -74,12 +76,14 @@ module groovemount_fan_ir_clamp(){
             echo(fan_screw_sep+4+m3_rad*2);
             
             //mount the fan
-            translate([0,-fan_screw_sep/2-m3_rad+.1+2,0])
+            translate([0,fan_drop,0])
             fan_mount(solid=1, inset = 9+5);
             
             //mount the sensor
-            translate([0,-fan_screw_sep-m3_rad*2+1,0])
-            diff_ir_mount(solid=1);
+            if(ir == true){
+                translate([0,ir_drop,0])
+                diff_ir_mount(solid=1);
+            }
         }
         
         //mount the hotend
@@ -88,12 +92,14 @@ module groovemount_fan_ir_clamp(){
         echo(fan_screw_sep+4+m3_rad*2);
             
         //mount the fan
-        translate([0,-fan_screw_sep/2-m3_rad+.1+2,0])
+        translate([0,fan_drop,0])
         fan_mount(solid=0, inset = 9+5);
             
         //mount the sensor
-        translate([0,-fan_screw_sep-m3_rad*2+1,0])
-        diff_ir_mount(solid=0);
+        if(ir == true){
+            translate([0,ir_drop,0])
+            diff_ir_mount(solid=0);
+        }
     }
 }
 
@@ -138,21 +144,25 @@ module fan_mount(solid=1, inset = 9){
                 //air guide
                 hull(){
                     for(i=[0,1]) for(j=[0,1]) mirror([i,0,0]) mirror([0,j,0]) translate([fan_screw_sep/2, fan_screw_sep/2, 0])
-                cylinder(r=m3_rad+2, h=wall);
+                    cylinder(r=m3_rad+2, h=wall);
                     
-                    translate([0,0,8+inset]) rotate([90,0,0]) cylinder(r=hotend_rad/2+wall/2, h=fan_screw_sep, center=true);
+                    #translate([0,0,8+inset]) rotate([90,0,0]) cylinder(r=hotend_rad/2+wall, h=fan_screw_sep, center=true);
                 }
             }
             
             //fan airhole
-            translate([0,0,-.1]) cylinder(r1=30.1/2, r2=25/2, h=15);
+            hull(){
+                cylinder(r=30.1/2, h=wall, center=true);
+                translate([0,0,17]) cylinder(r=24/2, h=wall, center=true);
+                translate([0,-4,17]) cylinder(r=24/2, h=wall, center=true);
+            }
             
             //screwholes
             for(i=[0,1]) for(j=[0,1]) mirror([i,0,0]) mirror([0,j,0]) translate([fan_screw_sep/2, fan_screw_sep/2, 0]) {
-                cylinder(r=m3_rad-slop, h=100, center=true);
+                cylinder(r=m3_rad-slop, h=wall*2, center=true);
                 hull(){
-                    translate([0,0,wall+2]) cylinder(r=m3_nut_rad, h=100, $fn=6);
-                    translate([5,0,wall+2]) cylinder(r=m3_nut_rad+.25, h=100, $fn=6);
+                    translate([0,0,wall+2]) cylinder(r=m3_nut_rad, h=wall*2, $fn=6);
+                    translate([5,0,wall+2]) cylinder(r=m3_nut_rad+.25, h=wall*2, $fn=6);
                 }
             }
             
@@ -171,10 +181,10 @@ module fan_mount(solid=1, inset = 9){
         //reiterate the screw holes
         //screwholes
             for(i=[0,1]) for(j=[0,1]) mirror([i,0,0]) mirror([0,j,0]) translate([fan_screw_sep/2, fan_screw_sep/2, 0]) {
-                cylinder(r=m3_rad-slop, h=100, center=true);
+                cylinder(r=m3_rad-slop, h=wall*4, center=true);
                 hull(){
-                    translate([0,0,wall+2]) cylinder(r=m3_nut_rad, h=100, $fn=6);
-                    translate([5,0,wall+2]) cylinder(r=m3_nut_rad+.25, h=100, $fn=6);
+                    translate([0,0,wall+2]) cylinder(r=m3_nut_rad, h=wall*2, $fn=6);
+                    translate([5,0,wall+2]) cylinder(r=m3_nut_rad+.25, h=wall*2, $fn=6);
                 }
             }
     }
