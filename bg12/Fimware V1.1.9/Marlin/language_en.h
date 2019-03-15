@@ -47,7 +47,7 @@
   #define MSG_BACK                            _UxGT("Back")
 #endif
 #ifndef MSG_SD_INSERTED
-  #define MSG_SD_INSERTED                     _UxGT("Card inserted")
+  #define MSG_SD_INSERTED                     _UxGT("Data Injected")
 #endif
 #ifndef MSG_SD_REMOVED
   #define MSG_SD_REMOVED                      _UxGT("Card removed")
