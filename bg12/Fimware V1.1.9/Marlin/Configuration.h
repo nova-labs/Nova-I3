@@ -61,7 +61,7 @@
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
 #define STRING_CONFIG_H_AUTHOR "Paul Chase & John Link" // Who made the changes.
-//#define SHOW_BOOTSCREEN
+#define SHOW_BOOTSCREEN
 #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
 #define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
 
@@ -1505,8 +1505,8 @@
 // Note: Usually sold with a white PCB.
 //
 #define REPRAP_DISCOUNT_SMART_CONTROLLER
-#define LCD_WIDTH 20
-#define LCD_HEIGHT 4
+//#define LCD_WIDTH 20
+//#define LCD_HEIGHT 4
 
 //
 // ULTIMAKER Controller.
