@@ -597,7 +597,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 1000, 25, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 3000, 1000, 5, 10000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -621,7 +621,7 @@
  */
 #define DEFAULT_XJERK                 5.0
 #define DEFAULT_YJERK                 5.0
-#define DEFAULT_ZJERK                  2
+#define DEFAULT_ZJERK                  .5
 #define DEFAULT_EJERK                  5.0
 
 /**
@@ -632,7 +632,7 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-#define S_CURVE_ACCELERATION
+//#define S_CURVE_ACCELERATION
 
 //===========================================================================
 //============================= Z Probe Options =============================
