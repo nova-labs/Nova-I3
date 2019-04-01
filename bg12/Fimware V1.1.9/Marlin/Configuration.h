@@ -61,7 +61,7 @@
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
 #define STRING_CONFIG_H_AUTHOR "Paul Chase & John Link" // Who made the changes.
-//#define SHOW_BOOTSCREEN
+#define SHOW_BOOTSCREEN
 #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
 #define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
 
@@ -582,14 +582,14 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 2560, 155 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 2560, 170 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 75, 4, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 300, 75, 5, 25 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -597,7 +597,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 1500, 500, 50, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 1500, 500, 10, 10000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -621,7 +621,7 @@
  */
 #define DEFAULT_XJERK                 5.0
 #define DEFAULT_YJERK                 5.0
-#define DEFAULT_ZJERK                  2.5
+#define DEFAULT_ZJERK                  .5
 #define DEFAULT_EJERK                  5.0
 
 /**
@@ -632,7 +632,7 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-#define S_CURVE_ACCELERATION
+//#define S_CURVE_ACCELERATION
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -1124,7 +1124,7 @@
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (40*60)
-#define HOMING_FEEDRATE_Z  (4*60)
+#define HOMING_FEEDRATE_Z  (2*60)
 
 // @section calibrate
 
@@ -1505,8 +1505,8 @@
 // Note: Usually sold with a white PCB.
 //
 #define REPRAP_DISCOUNT_SMART_CONTROLLER
-#define LCD_WIDTH 20
-#define LCD_HEIGHT 4
+//#define LCD_WIDTH 20
+//#define LCD_HEIGHT 4
 
 //
 // ULTIMAKER Controller.
