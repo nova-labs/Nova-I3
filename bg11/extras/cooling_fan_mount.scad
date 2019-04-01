@@ -398,8 +398,8 @@ module fan_mount_blower(){
             difference(){
                                 translate([0,0,-.5]) cylinder(r1=hot_rad+wall+wall, r2=hot_rad+wall*4, h=thickness+wall+1, $fn=facets);
                                 //this adds some holes to direct air straight into the hotend
-                                for(i=[90:360/6:109]) rotate([0,0,i]) {
-                                    cube([100,5,5],center=true);
+                                #for(i=[90:360/6:109]) rotate([0,0,i]) {
+                                    cube([100,3,5],center=true);
                                 }
                             }
                             
