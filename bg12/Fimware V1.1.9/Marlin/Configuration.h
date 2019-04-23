@@ -589,7 +589,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 75, 6, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 500, 100, 15, 25 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -597,7 +597,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 1500, 500, 5, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 1500, 600, 15, 10000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -620,7 +620,7 @@
  * value set here, it may happen instantaneously.
  */
 #define DEFAULT_XJERK                 5.0
-#define DEFAULT_YJERK                 5.0
+#define DEFAULT_YJERK                 3.0
 #define DEFAULT_ZJERK                  .5
 #define DEFAULT_EJERK                  5.0
 
@@ -1124,7 +1124,7 @@
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (40*60)
-#define HOMING_FEEDRATE_Z  (3*60)
+#define HOMING_FEEDRATE_Z  (4*60)
 
 // @section calibrate
 

@@ -1038,7 +1038,7 @@
   #define X2_SENSE_RESISTOR   91
   #define X2_MICROSTEPS       16
 
-  #define Y_MAX_CURRENT     1000
+  #define Y_MAX_CURRENT     1400
   #define Y_SENSE_RESISTOR    91
   #define Y_MICROSTEPS        16
 
@@ -1046,7 +1046,7 @@
   #define Y2_SENSE_RESISTOR   91
   #define Y2_MICROSTEPS       16
 
-  #define Z_MAX_CURRENT     1000
+  #define Z_MAX_CURRENT     1500
   #define Z_SENSE_RESISTOR    91
   #define Z_MICROSTEPS        16
 
