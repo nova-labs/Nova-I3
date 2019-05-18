@@ -6,6 +6,9 @@ Using the Einsy Rambo, the machine will be quiet and upgradable, but we'll
 probably run the first group as simple printers, letting folks add their
 own upgrades.
 
+Instructions will continue to live on the Nova Labs Wiki for this machine:
+<a href="https://nova-labs.org/wiki/nova300/instructions">Nova Labs Wiki</a>
+
 <br><br>
 Instructions!
 First print out the endcap-legs - you need 4, for the front and back corners.  They use an onionskin layer on the screwholes, so they can print with no support on the flat side.
