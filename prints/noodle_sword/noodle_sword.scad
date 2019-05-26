@@ -29,7 +29,7 @@ if(part == 2){
 if(part == 3){
         %cylinder(r=noodle_hole_rad, h=100);
     difference(){
-        2_part_sword(part = -1);
+        rotate([180,0,0]) 2_part_sword(part = -1);
         //translate([0,-50,0]) cube([100,100,100], center=true);
     }
 
@@ -72,10 +72,10 @@ module 2_part_sword(part = 0){
     
     guard_rad = thread_dia/2+11;
     handle_rad = 11;
-    handle_len = 79;
+    handle_len = 73;
     
-    pommel_len = 31;
-    pommel_rad = 23;
+    pommel_len = 23;
+    pommel_rad = 17;
     
     
     
@@ -84,7 +84,7 @@ module 2_part_sword(part = 0){
     if (part >= 0) difference(){
         union(){
             metric_thread(diameter=thread_dia, pitch=3, length=in/2, internal=false, angle=45, taper=-taper, leadin=0, leadfac=1.0);
-            translate([0,0,in/2-.1]) ball_screw(taper = -5, ball_rad = 5);
+            translate([0,0,in/2-.1]) ball_screw(taper = -7, ball_rad = 5);
         }
         
         //stiffener
@@ -113,16 +113,19 @@ module 2_part_sword(part = 0){
                 hull(){
                     cylinder(r=handle_rad, h=.1);
                     minkowski(){
-                        translate([0,0,pommel_len*2/3]) cylinder(r=pommel_rad, h=.1, $fn=8);
-                        sphere(r=.5);
+                        translate([0,0,pommel_len*3/4]) cylinder(r=pommel_rad, h=.1, $fn=6);
+                        sphere(r=3);
                     }
                 }
                 hull(){
                     minkowski(){
-                        translate([0,0,pommel_len*2/3]) cylinder(r=pommel_rad, h=.1, $fn=8);
-                        sphere(r=.5);
+                        translate([0,0,pommel_len*3/4]) cylinder(r=pommel_rad, h=.1, $fn=6);
+                        sphere(r=3);
                     }
-                    translate([0,0,pommel_len]) cylinder(r=handle_rad, h=.1, $fn=8);
+                    minkowski(){
+                        translate([0,0,pommel_len]) cylinder(r=handle_rad, h=.1, $fn=8);
+                        sphere(r=3);
+                    }
                 }
             }
         }
@@ -257,8 +260,8 @@ module hex_screw(){
     }
 }
 
-module ball_screw(length = 4, starts = 2, screw_rad = noodle_hole_rad, step = 18, taper = 0, extra_steps = 0, ball_rad = 5){
-    pitch = ball_rad*2*2.25;
+module ball_screw(length = 3, starts = 3, screw_rad = noodle_hole_rad, step = 18, taper = 0, extra_steps = 0, ball_rad = 5){
+    pitch = ball_rad*2*3.25;
     true_pitch = pitch*starts;
     
     screw_ball_rad = ball_rad;
@@ -268,7 +271,7 @@ module ball_screw(length = 4, starts = 2, screw_rad = noodle_hole_rad, step = 18
     
     true_taper = taper / (360*length-step-1);
     
-    angle_offset = 90;
+    angle_offset = 60;
     
     difference(){
         union(){        
