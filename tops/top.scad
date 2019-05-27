@@ -1,6 +1,6 @@
 use <pins2.scad>
 in = 25.4;
-part = 3;
+part = 4;
 
 if(part == 0)
     top_shaft();
@@ -16,6 +16,9 @@ if(part == 2)
     
 if(part == 3)
     laser_template();
+
+if(part == 4)
+    printable_arena();
 
 if(part == 10)
     assembled();
@@ -147,5 +150,31 @@ module top_shaft(){
         rotate([90,0,0]) translate([0,0,-.1]) sphere(r=pin_rad+.5, $fn=6);
         
         //for(i=[0,1]) mirror([0,0,i]) translate([0,0,50+pin_rad-.75]) cube([100,100,100], center=true); 
+    }
+}
+
+
+module printable_arena() {
+    x = 250;
+    y = 200;
+    z = 15;
+    
+    wall = 4;
+    
+    difference(){
+        union(){
+            hull() for(i=[0,1]) mirror([i,0,0]) translate([x-y,0,0]) 
+                cylinder(r=y/2, h=z);
+        }
+        
+        hull() {
+            for(i=[0,1]) mirror([i,0,0]) translate([x-y,0,z+wall]) 
+                intersection(){
+                    scale([(y/2)/(z),(y/2)/(z),1]) sphere(r=z);
+                    cylinder(r=y/2-wall/2, h=50, center=true);
+                }
+            //center dip
+            translate([0,0,z+wall]) sphere(r=z+1);
+        }
     }
 }
