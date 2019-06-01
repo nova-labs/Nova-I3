@@ -1,6 +1,6 @@
 use <pins2.scad>
 in = 25.4;
-part = 4;
+part = 5;
 
 if(part == 0)
     top_shaft();
@@ -19,6 +19,9 @@ if(part == 3)
 
 if(part == 4)
     printable_arena();
+
+if(part == 5)
+    carveable_arena();
 
 if(part == 10)
     assembled();
@@ -180,5 +183,34 @@ module printable_arena() {
         
         //cutoff the base
         cube([300,300,wall], center=true);
+    }
+}
+
+module carveable_arena() {
+    x = 20*in;
+    y = 16*in;
+    z = .75*in;
+    
+    extra_top = 2.5*in;
+    
+    wall = .25*in;
+    
+    difference(){
+        union(){
+            hull() {
+                for(i=[0,1]) for(j=[0,1]) mirror([i,0,0]) translate([x-y,extra_top*j,0]) 
+                    cylinder(r=y/2, h=z);
+            }
+        }
+        
+        hull() {
+            for(i=[0,1]) mirror([i,0,0]) translate([x-y,0,z+wall]) 
+                intersection(){
+                    scale([(y/2)/(z),(y/2)/(z),1]) sphere(r=z);
+                    cylinder(r=y/2-wall/2, h=50, center=true);
+                }
+            //center dip
+            translate([0,0,z+wall]) sphere(r=z+1);
+        }
     }
 }
