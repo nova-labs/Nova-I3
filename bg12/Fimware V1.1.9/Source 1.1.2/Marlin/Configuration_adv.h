@@ -90,7 +90,7 @@
    * and/or decrease WATCH_TEMP_INCREASE. WATCH_TEMP_INCREASE should not be set
    * below 2.
    */
-  #define WATCH_TEMP_PERIOD 20                // Seconds
+  #define WATCH_TEMP_PERIOD 30                // Seconds
   #define WATCH_TEMP_INCREASE 2               // Degrees Celsius
 #endif
 
@@ -1054,7 +1054,7 @@
   #define Z2_SENSE_RESISTOR   91
   #define Z2_MICROSTEPS       16
 
-  #define E0_MAX_CURRENT    1000
+  #define E0_MAX_CURRENT    1400
   #define E0_SENSE_RESISTOR   91
   #define E0_MICROSTEPS       16
 
@@ -1120,7 +1120,7 @@
   #define Z2_CURRENT         800
   #define Z2_MICROSTEPS       16
 
-  #define E0_CURRENT         1000
+  #define E0_CURRENT         1400
   #define E0_MICROSTEPS       16
 
   #define E1_CURRENT         800

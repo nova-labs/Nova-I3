@@ -155,12 +155,13 @@ module top_shaft(){
 
 
 module printable_arena() {
-    x = 250;
-    y = 200;
+    
+    x = 225;
+    y = 175;
     z = 15;
     
-    wall = 4;
-    
+    wall = 5;
+    %cube([300,300,.1], center=true); 
     difference(){
         union(){
             hull() for(i=[0,1]) mirror([i,0,0]) translate([x-y,0,0]) 
@@ -176,5 +177,8 @@ module printable_arena() {
             //center dip
             translate([0,0,z+wall]) sphere(r=z+1);
         }
+        
+        //cutoff the base
+        cube([300,300,wall], center=true);
     }
 }
