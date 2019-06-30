@@ -10,7 +10,7 @@ noodle_rad = 2.5*in/2;
 //regular noodles are half-inch
 noodle_hole_rad = (in*1.0)/2;
 
-part = 3;
+part = 42;
 
 if(part == 0)
     sword_holder();
@@ -32,7 +32,30 @@ if(part == 3){
         rotate([180,0,0]) 2_part_sword(part = -1);
         //translate([0,-50,0]) cube([100,100,100], center=true);
     }
+}
 
+if(part == 4){
+    screw_ring(finger_rad = 13/2, screw_dia = 6);
+}
+
+if(part == 41){
+    screw_ring(finger_rad = 15.5/2, screw_dia = 6);
+}
+
+if(part == 42){
+    screw_ring(finger_rad = 18/2, screw_dia = 6);
+}
+
+if(part == 5){
+    screw_ring_star(screw_dia = 6);
+}
+
+if(part == 6){
+    screw_ring_star(screw_dia = 6, points = 6);
+}
+
+if(part == 7){
+    screw_ring_thread(screw_dia = 6);
 }
 
 handle_len = 4.5*in;
@@ -58,6 +81,59 @@ magnet_rad = 13/2;
 magnet_height = 3.5;
 
 $fn=36;
+
+
+
+module screw_ring_star(screw_dia = 6, points=5, star_rad = 11){
+    point_rad = 2;
+    point_flat = .5;
+    point_h = in/8;
+    difference(){
+        union(){
+            for(i=[0:360/points:359]) hull(){
+                //center cylinder
+                cylinder(r=(screw_dia/2+.1)/cos(180/points), h=in/4, $fn=points);
+                rotate([0,0,i]) translate([star_rad,0,point_rad-point_flat]) sphere(r=point_rad, $fn=points);
+            }
+        }
+        translate([0,0,-.05]) metric_thread(diameter=screw_dia, pitch=2, length=in/4, internal=true, angle=45, taper=.05, leadin=0, leadfac=0);
+        
+        translate([0,0,-100]) cube([200,200,200], center=true);
+    }
+}
+
+module screw_ring_thread(screw_dia = 6, points=5, star_rad = 11){
+    point_rad = 2;
+    point_flat = .5;
+    point_h = in/8;
+    
+    metric_thread(diameter=screw_dia, pitch=2, length=in/4, internal=true, angle=45, taper=.05, leadin=0, leadfac=0);
+}
+
+module screw_ring(finger_rad = 10, screw_dia = 6){
+    ring_thick = 5;
+    ring_flat = 1;
+    ring_wall_rad = 1.5;
+    ring_rad = finger_rad+ring_wall_rad;
+    open_angle = 20;
+    
+    ring_step = 20;
+    
+    difference(){
+        union(){
+            for(i=[-180+open_angle:ring_step:180-open_angle-ring_step]){
+                hull(){
+                    rotate([0,0,i]) translate([ring_rad,0,0]) scale([1,1,(ring_thick/2+ring_flat/2)/ring_wall_rad]) sphere(r=ring_wall_rad, $fn=12);
+                    rotate([0,0,i+ring_step]) translate([ring_rad,0,0]) scale([1,1,(ring_thick/2+ring_flat/2)/ring_wall_rad]) sphere(r=ring_wall_rad, $fn=12);
+                }
+            }
+            
+            translate([ring_rad+ring_wall_rad-1,0,0]) rotate([0,90,0]) metric_thread(diameter=screw_dia, pitch=2, length=in/4, internal=false, angle=45, taper=.05, leadin=1, leadfac=1.0);
+        }
+        
+        for(i=[0,1]) mirror([0,0,i]) translate([0,0,50+ring_thick/2]) cube([100,100,100], center=true);
+    }
+}
 
 module 2_part_sword(part = 0){
     screw_rad = noodle_hole_rad;
