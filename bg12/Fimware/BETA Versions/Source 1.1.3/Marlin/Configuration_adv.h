@@ -1030,11 +1030,11 @@
  */
 #if HAS_DRIVER(TMC26X)
 
-  #define X_MAX_CURRENT     1000 // in mA
+  #define X_MAX_CURRENT     1200 // in mA
   #define X_SENSE_RESISTOR    91 // in mOhms
   #define X_MICROSTEPS        16 // number of microsteps
 
-  #define X2_MAX_CURRENT    1000
+  #define X2_MAX_CURRENT    1200
   #define X2_SENSE_RESISTOR   91
   #define X2_MICROSTEPS       16
 
@@ -1054,7 +1054,7 @@
   #define Z2_SENSE_RESISTOR   91
   #define Z2_MICROSTEPS       16
 
-  #define E0_MAX_CURRENT    1000
+  #define E0_MAX_CURRENT    1500
   #define E0_SENSE_RESISTOR   91
   #define E0_MICROSTEPS       16
 
@@ -1102,7 +1102,7 @@
   #define HOLD_MULTIPLIER    0.5  // Scales down the holding current from run current
   #define INTERPOLATE       true  // Interpolate X/Y/Z_MICROSTEPS to 256
 
-  #define X_CURRENT          1000  // rms current in mA. Multiply by 1.41 for peak current.
+  #define X_CURRENT          1200  // rms current in mA. Multiply by 1.41 for peak current.
   #define X_MICROSTEPS        16  // 0..256
 
   #define Y_CURRENT          1400
@@ -1120,7 +1120,7 @@
   #define Z2_CURRENT         800
   #define Z2_MICROSTEPS       16
 
-  #define E0_CURRENT         1000
+  #define E0_CURRENT         1500
   #define E0_MICROSTEPS       16
 
   #define E1_CURRENT         800
