@@ -1,14 +1,17 @@
-mirror([1,0,0]) scale([2,2,2]) stamp_base(base_thick = 1.5);
-mirror([1,0,0]) scale([2,2,2]) stamp_text(base_thick = 3);
-mirror([1,0,0]) scale([2,2,2]) stamp_border(base_thick = 3);
-mirror([1,0,0]) scale([2,2,2]) stamp_bulb(base_thick = 3);
-!mirror([1,0,0]) scale([2,2,2]) stamp_all(base_thick = 3);
+big_stamp(size = 100);
+
+/** Small stamp **/
+//mirror([1,0,0]) scale([2,2,2]) stamp_base(base_thick = 1.5);
+//mirror([1,0,0]) scale([2,2,2]) stamp_text(base_thick = 3);
+//mirror([1,0,0]) scale([2,2,2]) stamp_border(base_thick = 3);
+//mirror([1,0,0]) scale([2,2,2]) stamp_bulb(base_thick = 3);
+//mirror([1,0,0]) scale([2,2,2]) stamp_all(base_thick = 3);
 
 //DXFs for lasercutting
-projection() mirror([1,0,0]) scale([2,2,2]) stamp_base(base_thick = 1.5);
-projection(cut=true) mirror([1,0,0]) scale([2,2,2]) translate([0,0,-8]) stamp_all(base_thick = 3);
+//projection() mirror([1,0,0]) scale([2,2,2]) stamp_base(base_thick = 1.5);
+//projection(cut=true) mirror([1,0,0]) scale([2,2,2]) translate([0,0,-8]) stamp_all(base_thick = 3);
 
-scale([1.5,1.5,1]) logo();
+*scale([1.5,1.5,1]) logo();
 
 sc = .1;
 
@@ -17,6 +20,15 @@ base_thick = 1.5;
 gear_thick = 2;
 thread_thick = 2.5;
 inner_thick = 2;
+
+module big_stamp(gray=true, orange=true, size = 100){
+    width = 681.214;
+    scale([size/width, size/width, size/width]){
+        import("NovaLabsTmStampWebsite.dxf", layer="border");
+        
+        
+    }
+}
 
 module stamp_base(){
     sphere_rad = 1;
