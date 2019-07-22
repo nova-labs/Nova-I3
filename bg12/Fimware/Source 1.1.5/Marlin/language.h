@@ -195,7 +195,7 @@
 #define MSG_SD_FILE_OPENED                  "File opened: "
 #define MSG_SD_SIZE                         " Size: "
 #define MSG_SD_FILE_SELECTED                "File selected"
-#define MSG_SD_WRITE_TO_FILE                "Writing to file: "
+#define MSG_SD_WRITE_TO_FILE                "Beaming to file: "
 #define MSG_SD_PRINTING_BYTE                "SD printing byte "
 #define MSG_SD_NOT_PRINTING                 "Not SD printing"
 #define MSG_SD_ERR_WRITE_TO_FILE            "error writing to file"
@@ -204,8 +204,8 @@
 
 #define MSG_STEPPER_TOO_HIGH                "Steprate too high: "
 #define MSG_ENDSTOPS_HIT                    "endstops hit: "
-#define MSG_ERR_COLD_EXTRUDE_STOP           " cold extrusion prevented"
-#define MSG_ERR_LONG_EXTRUDE_STOP           " too long extrusion prevented"
+#define MSG_ERR_COLD_EXTRUDE_STOP           " heat nozzle and try again"
+#define MSG_ERR_LONG_EXTRUDE_STOP           " use a shorter extrusion value - max is 600mm"
 #define MSG_HOTEND_TOO_COLD                 "Hotend too cold"
 
 #define MSG_FILAMENT_CHANGE_HEAT            "Press button (or M108) to heat nozzle"
