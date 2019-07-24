@@ -404,7 +404,7 @@
    When set to any value below 255, enables a form of PWM to the bed that acts like a divider
    so don't use it unless you are OK with PWM on your bed. (See the comment on enabling PIDTEMPBED)
 */
-#define MAX_BED_POWER 140 // limits duty cycle to bed; 255=full current
+#define MAX_BED_POWER 170 // limits duty cycle to bed; 255=full current
 
 #if ENABLED(PIDTEMPBED)
 
@@ -599,7 +599,7 @@
    Override with M201
                                         X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
 */
-#define DEFAULT_MAX_ACCELERATION      { 1500, 600, 20, 1000 }
+#define DEFAULT_MAX_ACCELERATION      { 1500, 600, 10, 1000 }
 
 /**
    Default Acceleration (change/s) change = mm/s
@@ -623,7 +623,7 @@
 */
 #define DEFAULT_XJERK                 5.0
 #define DEFAULT_YJERK                 3.0
-#define DEFAULT_ZJERK                  .5
+#define DEFAULT_ZJERK                  .25
 #define DEFAULT_EJERK                  5.0
 
 /**
@@ -720,7 +720,7 @@
 //#define WAIT_FOR_BED_HEATER     // Wait for bed to heat back up between probes (to improve accuracy)
 #endif
 //#define PROBING_FANS_OFF          // Turn fans off when probing
-//#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
+#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
 
 // A probe that is deployed and stowed with a solenoid pin (SOL1_PIN)
 //#define SOLENOID_PROBE
@@ -754,7 +754,7 @@
 */
 #define X_PROBE_OFFSET_FROM_EXTRUDER 0  // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 0  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -.1   // Z offset: -below +above  [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER .1   // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
 #define MIN_PROBE_EDGE 30
@@ -787,7 +787,7 @@
    Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
        But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
 */
-#define Z_CLEARANCE_DEPLOY_PROBE   5 // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_DEPLOY_PROBE    2 // Z Clearance for Deploy/Stow
 #define Z_CLEARANCE_BETWEEN_PROBES  2 // Z Clearance between probe points
 #define Z_CLEARANCE_MULTI_PROBE     1 // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING           5 // Z position after probing is done
