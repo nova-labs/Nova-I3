@@ -7,6 +7,12 @@ gear_thick = 2;
 thread_thick = 2.5;
 inner_thick = 2;
 
+*scale([1.5,1.5,1.5]) tall_logo();
+
+module tall_logo(h = 5){
+    translate([0,0,h]) logo();
+    scale([1,1,h+.1]) base();
+}
 
 module logo(){
     union(){
