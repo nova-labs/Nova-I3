@@ -3,8 +3,8 @@ scale([.4,.4,.4]) texture();
 
 *bowl();
 
-base_height = 4;
-cutter_height = 17;
+base_height = 6;
+cutter_height = 29;
 bowl_height = 100;
 
 module bowl($fn=90){
@@ -17,7 +17,7 @@ module cutter(){
     difference(){
         union(){
             hull(){
-                scale([1.1,1.1,1]) linear_extrude(height=base_height){
+                scale([1.3,1.3,1]) linear_extrude(height=base_height){
                     import("nova-labs-cutter.dxf", layer = "outside_edge");
                 }
             }
@@ -25,7 +25,7 @@ module cutter(){
                 linear_extrude(height=base_height){
                     import("nova-labs-cutter.dxf", layer = "outside_edge");
                 }
-                cylinder(r1=4, r2=2, h=cutter_height, $fn=6);
+                cylinder(r1=8, r2=2, h=cutter_height, $fn=6);
             }
         }
         
@@ -42,7 +42,7 @@ module texture(){
             import("nova-labs-cutter.dxf", layer = "inside_edge");
         }
         
-        linear_extrude(height=base_height*3){
+        linear_extrude(height=cutter_height){
             import("nova-labs-cutter.dxf", layer = "gear_bulb");
         }
     }
