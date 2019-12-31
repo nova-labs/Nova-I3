@@ -103,7 +103,8 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT -1
+#define SERIAL_PORT 0
+#define SERIAL_PORT_2 -1
 
 /**
  * Select a secondary serial port on the board to use for communication with the host.
@@ -919,7 +920,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { 0, -42, -2 }
+#define NOZZLE_TO_PROBE_OFFSET { 42, 0, -2 }
 
 // Certain types of probes need to stay away from edges
 #define MIN_PROBE_EDGE 40
@@ -1727,7 +1728,7 @@
 //
 // Note: Usually sold with a white PCB.
 //
-#define REPRAP_DISCOUNT_SMART_CONTROLLER
+//#define REPRAP_DISCOUNT_SMART_CONTROLLER
 
 //
 // Original RADDS LCD Display+Encoder+SDCardReader
