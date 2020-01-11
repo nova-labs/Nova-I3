@@ -1,1 +1,12 @@
-laser settings and speeds will go here
+Parts should be cut out of 6mm MDF - what most US stores sell as 1/4".
+
+Anything from 5.5-7.5mm should work with the screws used; thinner, but
+stronger material you can use shorter screws.
+
+
+The parts can all be lasered in two passes - first the screwholes, then
+the perimeter.
+
+On a 100-watt class laser, MDF:
+Speed 10-12, power 90-100
+
