@@ -102,8 +102,8 @@ tensioner_cap_rad = 4.5;
 //translate([motor_r*2+wall, 0, 0]) mirror([1,0,0]) 
 //extruder(bowden_tap, none, m3);
 //translate([motor_r*2+wall, motor_r*2+wall, 0]) 
-extruder(groovemount_screw, none, m5);
-translate([0,34,0]) groovemount_screw_clamp();
+*extruder(groovemount_screw, none, m5);
+translate([0,34,0]) groovemount_screw_clamp(fan = true, bltouch=true);
 
 //motor flange for the aero - it needs a 2mm bump
 //aero_flange();
