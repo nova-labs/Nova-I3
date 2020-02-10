@@ -1,0 +1,55 @@
+{
+    "name": "TMCStepper", 
+    "repository": {
+        "url": "https://github.com/teemuatlut/TMCStepper.git", 
+        "type": "git"
+    }, 
+    "platforms": [
+        "atmelavr", 
+        "atmelmegaavr", 
+        "atmelsam", 
+        "espressif32", 
+        "espressif8266", 
+        "gd32v", 
+        "infineonxmc", 
+        "intel_arc32", 
+        "kendryte210", 
+        "microchippic32", 
+        "nordicnrf51", 
+        "nordicnrf52", 
+        "ststm32", 
+        "ststm8", 
+        "teensy", 
+        "timsp430"
+    ], 
+    "frameworks": [
+        "arduino"
+    ], 
+    "version": "0.6.2", 
+    "authors": [
+        {
+            "maintainer": false, 
+            "name": "teemuatlut", 
+            "url": "https://github.com/teemuatlut", 
+            "email": null
+        }
+    ], 
+    "keywords": [
+        "trinamic", 
+        "uart", 
+        "stepper", 
+        "driver", 
+        "tmc5161", 
+        "tmc2160", 
+        "spi", 
+        "tmc5160", 
+        "tmc", 
+        "tmc2130", 
+        "tmc5130", 
+        "tmc2224", 
+        "tmc2208", 
+        "tmc2660"
+    ], 
+    "id": 5513, 
+    "description": "Arduino library for configuring Trinamic stepper drivers."
+}

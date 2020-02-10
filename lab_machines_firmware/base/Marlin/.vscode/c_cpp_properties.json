@@ -1,0 +1,74 @@
+{
+    "configurations": [
+        {
+            "name": "!!! WARNING !!! AUTO-GENERATED FILE, PLEASE DO NOT MODIFY IT AND USE https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags"
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/Marlin",
+                "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/TMC26XStepper",
+                "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/SlowSoftI2CMaster",
+                "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/SailfishRGB_LED",
+                "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/SailfishLCD",
+                "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/Arduino-L6470/src",
+                "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/LiquidTWI2",
+                "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/Adafruit_MAX31865",
+                "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/U8glib-HAL_ID1932/src",
+                "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/Adafruit NeoPixel_ID28",
+                "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/TMCStepper_ID5513/src",
+                "/home/paenian/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "/home/paenian/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/LiquidCrystal_ID136",
+                "/home/paenian/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "/home/paenian/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "/home/paenian/.platformio/packages/framework-arduino-avr/variants/mega",
+                "/home/paenian/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "/home/paenian/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "/home/paenian/.platformio/packages/tool-unity",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/Marlin",
+                    "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/TMC26XStepper",
+                    "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/SlowSoftI2CMaster",
+                    "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/SailfishRGB_LED",
+                    "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/SailfishLCD",
+                    "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/Arduino-L6470/src",
+                    "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/LiquidTWI2",
+                    "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/Adafruit_MAX31865",
+                    "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/U8glib-HAL_ID1932/src",
+                    "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/Adafruit NeoPixel_ID28",
+                    "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/TMCStepper_ID5513/src",
+                    "/home/paenian/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "/home/paenian/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "/data/github/Nova-I3/lab_machines_firmware/base/Marlin/.pio/libdeps/megaatmega2560/LiquidCrystal_ID136",
+                    "/home/paenian/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "/home/paenian/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "/home/paenian/.platformio/packages/framework-arduino-avr/variants/mega",
+                    "/home/paenian/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "/home/paenian/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "/home/paenian/.platformio/packages/tool-unity",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=40100",
+                "ARDUINO_AVR_MEGA2560",
+                "__MARLIN_FIRMWARE__",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
+                "__AVR_ATmega2560__",
+                ""
+            ],
+            "intelliSenseMode": "clang-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "\"/home/paenian/.platformio/packages/toolchain-atmelavr/bin/avr-gcc\" -mmcu=atmega2560"
+        }
+    ],
+    "version": 4
+}
