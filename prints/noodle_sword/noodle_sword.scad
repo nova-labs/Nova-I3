@@ -10,7 +10,7 @@ noodle_rad = 2.5*in/2;
 //regular noodles are half-inch
 noodle_hole_rad = (in*1.0)/2;
 
-part = 33;
+part = 3;
 
 if(part == 0)
     sword_holder();
@@ -26,11 +26,20 @@ if(part == 2){
     }
 }
 
+if(part == 22){
+        //%cylinder(r=noodle_hole_rad, h=100);
+    difference(){
+        //%2_part_sword(part = 1);
+        //translate([0,-50,0]) cube([100,100,100], center=true);
+        noodle_clip();
+    }
+}
+
 if(part == 3){
         %cylinder(r=noodle_hole_rad, h=100);
     *translate([45,0,-in/2]) 2_part_sword(part = 1);
     difference(){
-        rotate([180,0,0]) 2_part_sword(part = -1);
+        rotate([180,0,0]) 2_part_sword(part = -1, hollow = false);
         //translate([0,-50,0]) cube([100,100,100], center=true);
     }
 }
@@ -43,28 +52,35 @@ if(part == 33){
 }
 
 if(part == 4){
-    screw_ring(finger_rad = 13/2, screw_dia = 6);
+    screw_ring(finger_rad = 13/2, screw_dia = 7);
 }
 
 if(part == 41){
-    screw_ring(finger_rad = 15.5/2, screw_dia = 6);
+    screw_ring(finger_rad = 15.5/2, screw_dia = 7);
 }
 
 if(part == 42){
-    screw_ring(finger_rad = 18/2, screw_dia = 6);
+    screw_ring(finger_rad = 18/2, screw_dia = 7);
 }
 
 if(part == 5){
-    screw_ring_star(screw_dia = 6);
+    screw_ring_star(screw_dia = 7);
 }
 
 if(part == 6){
-    screw_ring_star(screw_dia = 6, points = 6);
+    screw_ring_star(screw_dia = 7, points = 6);
 }
 
 if(part == 7){
-    screw_ring_thread(screw_dia = 6);
+    screw_ring_thread(screw_dia = 7);
 }
+
+if(part == 8){
+    squirrel_tail_thread(screw_dia = 30);
+}
+
+if(part == 9)
+    noodle_rocket();
 
 handle_len = 4.5*in;
 screw_len = 4.25*in;
@@ -91,8 +107,71 @@ magnet_height = 3.5;
 $fn=36;
 
 
+module noodle_rocket(){
+    noodle_rad = 30;
+    %cylinder(r=noodle_rad, h=100);
+    
+    wall = 2.5;
+    height = 90;
+    fin_w = 30;
+    
+    difference(){
+        union(){
+            //lower stabilization ring
+            difference(){          
+                hull() translate([0,0,wall*1.5]) rotate_extrude(convexity = 10)
+                    translate([noodle_rad+wall/2, 0, 0]) scale([1,1.5,1]) rotate([0,0,22.5])
+                    circle(r = wall, $fn=8);
+                
+                translate([0,0,wall/2]) cylinder(r=noodle_rad, h=wall*4);
+                translate([0,0,-wall/2]) cylinder(r=noodle_rad-wall, h=wall*4);
+            }
+            
+            //upper stabilization ring            
+            translate([0,0,height]) rotate_extrude(convexity = 10, $fn=6)
+            translate([(noodle_rad)/cos(28), 0, 0])
+            scale([1,1.5,1]) rotate([0,0,22.5]) circle(r = wall, $fn=8);
+            
+            //support the ring
+            for(i=[0:60:359]) rotate([0,0,i]) translate([noodle_rad+wall/2,0,0]) hull(){
+                cylinder(r=wall, h=wall, $fn=6);
+                translate([wall,0,height-wall*1.5]) cylinder(r=wall, h=wall, $fn=6);
+            }
+            
+            //Fins!
+            for(i=[0:120:359]) rotate([0,0,i]) translate([noodle_rad+wall/2,0,wall]){
+                //gotta hold the rubber band on
+                translate([-noodle_rad/2-wall/2,0,-wall/2]) cube([noodle_rad,wall,wall], center=true);
+                
+                //these are the fins proper
+                hull(){
+                    rotate([90,0,0]) cylinder(r=wall, h=wall/2, $fn=6, center=true);
+                    rotate([90,0,0]) cylinder(r=wall/2, h=wall, $fn=6, center=true);
+                    
+                    translate([wall,0,height-wall]){
+                        rotate([90,0,0]) cylinder(r=wall, h=wall/2, $fn=6, center=true);
+                        rotate([90,0,0]) cylinder(r=wall/2, h=wall, $fn=6, center=true);
+                    }
+                    
+                    translate([fin_w,0,height*1/3]){
+                        rotate([90,0,0]) sphere(r=wall/2, $fn=6, center=true);
+                        //rotate([90,0,0]) cylinder(r=wall/2, h=wall, $fn=6, center=true);
+                    }
+                    
+                    translate([fin_w,0,height*2/3]){
+                        rotate([90,0,0]) sphere(r=wall/2, $fn=6, center=true);
+                        //rotate([90,0,0]) cylinder(r=wall/2, h=wall, $fn=6, center=true);
+                    }
+                }
+            }
+        }
+        
+        //flatten the bottom
+        translate([0,0,-100+.5]) cube([200,200,200], center=true);
+    }
+}
 
-module screw_ring_star(screw_dia = 6, points=5, star_rad = 11){
+module screw_ring_star(screw_dia = 7, points=5, star_rad = 11){
     point_rad = 2;
     point_flat = .5;
     point_h = in/8;
@@ -104,7 +183,7 @@ module screw_ring_star(screw_dia = 6, points=5, star_rad = 11){
                 rotate([0,0,i]) translate([star_rad,0,point_rad-point_flat]) sphere(r=point_rad, $fn=points);
             }
         }
-        translate([0,0,-.05]) metric_thread(diameter=screw_dia, pitch=2, length=in/4, internal=true, angle=45, taper=.05, leadin=0, leadfac=0);
+        translate([0,0,-.05]) metric_thread(diameter=screw_dia, pitch=2, length=in/4+.1, internal=true, angle=45, taper=.05, leadin=0, leadfac=0);
         
         translate([0,0,-100]) cube([200,200,200], center=true);
     }
@@ -118,8 +197,22 @@ module screw_ring_thread(screw_dia = 6, points=5, star_rad = 11){
     metric_thread(diameter=screw_dia, pitch=2, length=in/4, internal=true, angle=45, taper=.05, leadin=0, leadfac=0);
 }
 
+module squirrel_tail_thread(screw_dia = 6, points=5, star_rad = 11){
+    point_rad = 2;
+    point_flat = .5;
+    point_h = in/8;
+    
+    metric_thread(diameter=screw_dia, pitch=4, length=in*2, internal=true, angle=45, taper=.05, leadin=0, leadfac=0);
+    
+    hull(){
+        cylinder(r=screw_dia/2+5, h=in/8, $fn=6);
+        translate([0,0,in/32]) cylinder(r=screw_dia/2+6, h=in/16, $fn=6);
+
+    }
+}
+
 module screw_ring(finger_rad = 10, screw_dia = 6){
-    ring_thick = 5;
+    ring_thick = 5.75;
     ring_flat = 1;
     ring_wall_rad = 1.5;
     ring_rad = finger_rad+ring_wall_rad;
@@ -143,6 +236,57 @@ module screw_ring(finger_rad = 10, screw_dia = 6){
     }
 }
 
+clip_rad = 3;
+
+module noodle_clip(){
+    stiff_rad = 3/8*in/2+.25;
+    
+    noodle_rad = 30;
+    extra_rad = 7.5;
+    
+    wall = 2;
+    
+    %cylinder(r=noodle_rad, h=50);
+    
+    rotate([0,0,20]) translate([stiff_rad+2,0,in*1.5])
+    difference(){
+        union(){
+            //rod
+            rotate([90,0,0]) cylinder(r=clip_rad, h=noodle_rad*2, center=true);
+            for(i=[0,1]) mirror([0,i,0]) translate([0,noodle_rad, 0]) sphere(r=clip_rad);
+            
+            //clip
+            intersection(){
+                difference(){
+                    translate([0,extra_rad-1,0]) cylinder(r=noodle_rad+extra_rad, h=17, center=true);
+                    translate([0,extra_rad-1,0]) cylinder(r=noodle_rad+extra_rad-wall, h=17, center=true);
+                    
+                    //clip slot
+                    hull(){
+                        translate([3,noodle_rad,2.5]) cube([2.5,noodle_rad,6], center=true);
+                        translate([3+2.6/2,noodle_rad,2.5]) rotate([90,0,0]) cylinder(r=2.6, h=noodle_rad, center=true);
+                    }
+                    translate([-1,noodle_rad,2]) cube([2,20,12], center=true);
+                }
+                
+                hull(){
+                    rotate([90,0,0]) cylinder(r=2.5, h=80);
+                    translate([50,0,0]) cube([100,100,14], center=true);
+                }
+            }
+        }
+        
+        //notch the tube
+        hull(){
+            translate([0,noodle_rad-.5,0]) cylinder(r=1, h=10, center=true);
+            translate([-3,noodle_rad-3.5,0]) cylinder(r=1, h=10, center=true);
+        }
+        
+        //flatten the bottom
+        translate([0,0,-100-2]) cube([200,200,200], center=true);
+    }
+}
+
 module 2_part_sword(part = 0, hollow = true){
     screw_rad = noodle_hole_rad;
     thread_dia = screw_rad*2+7;
@@ -150,6 +294,7 @@ module 2_part_sword(part = 0, hollow = true){
     wall = 2;
     
     in =25.4;
+    echo(thread_dia);
     
     stiff_rad = 3/8*in/2+.25;
     stiff_len = in*6+2;
@@ -173,6 +318,10 @@ module 2_part_sword(part = 0, hollow = true){
         
         //stiffener
         cylinder(r=stiff_rad, h=stiff_len, center=true);
+        
+        //blade clip
+        rotate([0,0,20]) translate([stiff_rad+clip_rad-.1,0,in*1.5])
+        rotate([90,0,0]) cylinder(r=clip_rad+.2, h=60, center=true);
     }
     
     if (part <= 0) difference(){
@@ -224,7 +373,7 @@ module 2_part_sword(part = 0, hollow = true){
                 }
         
                 //stiffener
-                rotate([180,0,0]) cylinder(r=stiff_rad, h=stiff_len/2);
+                rotate([180,0,0]) translate([0,0,-10]) cylinder(r=stiff_rad, h=stiff_len/2+10);
             }
         }
         
@@ -364,8 +513,8 @@ module hex_screw(){
     }
 }
 
-module ball_screw(length = 5.5, starts = 3, screw_rad = noodle_hole_rad, step = 18, taper = 0, extra_steps = 0, ball_rad = 5, facets = 6){
-    pitch = ball_rad*2*2;
+module ball_screw(length = 6, starts = 3, screw_rad = noodle_hole_rad, step = 18, taper = 0, extra_steps = 0, ball_rad = 5, facets = 36, thread_scale = [1,1,1]){
+    pitch = ball_rad*2*1.5;
     true_pitch = pitch*starts;
     
     screw_ball_rad = ball_rad;
@@ -384,8 +533,11 @@ module ball_screw(length = 5.5, starts = 3, screw_rad = noodle_hole_rad, step = 
             for(j=[1:starts]) rotate([0,0,j*(360/starts)+angle_offset]) translate([0,0,0]) {
                 for(i=[step*extra_steps:step:360*length/starts-step-1]) {
                     hull(){
-                        rotate([0,0,i]) translate([screw_rad+inset + (i-step*extra_steps)*true_taper, 0, i/360*true_pitch]) cylinder(r=screw_ball_rad, h=.01, $fn=facets);
-                        rotate([0,0,i+step]) translate([screw_rad+inset + (i-step*extra_steps+step)*true_taper, 0, (i+step)/360*true_pitch]) cylinder(r=screw_ball_rad, h=.01, $fn=facets);
+                        rotate([0,0,i]) translate([screw_rad+inset + (i-step*extra_steps)*true_taper, 0, i/360*true_pitch]) scale(thread_scale) cylinder(r=screw_ball_rad, h=.01, $fn=facets);
+                        rotate([0,0,i]) translate([screw_rad+inset + (i-step*extra_steps)*true_taper-screw_ball_rad*2, 0, i/360*true_pitch]) scale(thread_scale) sphere(r=screw_ball_rad*2, h=.01, $fn=facets);
+
+                        rotate([0,0,i+step]) translate([screw_rad+inset + (i-step*extra_steps+step)*true_taper, 0, (i+step)/360*true_pitch]) scale(thread_scale) cylinder(r=screw_ball_rad, h=.01, $fn=facets);
+                        rotate([0,0,i+step]) translate([screw_rad+inset + (i-step*extra_steps+step)*true_taper-screw_ball_rad*2, 0, (i+step)/360*true_pitch]) scale(thread_scale) sphere(r=screw_ball_rad*2, h=.01, $fn=facets);
                     }
                 }
             }
