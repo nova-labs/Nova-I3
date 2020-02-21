@@ -3,7 +3,7 @@
  * it into DXFs ready for lasering.
  */
 
-stl_file = "C:/Users/NovaLabs/Documents/paenian/Nova-I3/logos/octocat.stl";
+stl_file = "../logos/octocat.stl";
 layer_height = 2;
 num_layers = 10;
 
