@@ -10,7 +10,7 @@ noodle_rad = 2.5*in/2;
 //regular noodles are half-inch
 noodle_hole_rad = (in*1.0)/2;
 
-part = 3;
+part = 8;
 
 if(part == 0)
     sword_holder();
@@ -75,8 +75,12 @@ if(part == 7){
     screw_ring_thread(screw_dia = 7);
 }
 
-if(part == 8){
+if(part == 77){
     squirrel_tail_thread(screw_dia = 30);
+}
+
+if(part == 8){
+    peg_ring(finger_rad = 18/2, peg_dia = 10, ring_thick = 8);
 }
 
 if(part == 9)
@@ -97,7 +101,6 @@ facets = 13;
 side = 83;
 bumps = 4;
 
-%translate([0,20,0]) rotate([0,0,45]) cube([200,200,.1], center=true);
 
 
 
@@ -230,6 +233,50 @@ module screw_ring(finger_rad = 10, screw_dia = 6){
             }
             
             translate([ring_rad+ring_wall_rad-1,0,0]) rotate([0,90,0]) metric_thread(diameter=screw_dia, pitch=2, length=in/4, internal=false, angle=45, taper=.05, leadin=1, leadfac=1.0);
+        }
+        
+        for(i=[0,1]) mirror([0,0,i]) translate([0,0,50+ring_thick/2]) cube([100,100,100], center=true);
+    }
+}
+
+module peg_ring(finger_rad = 10, peg_dia = 6, ring_thick = 6){
+    sc = (peg_dia/2)/108;
+    
+    
+    open_angle = 20;
+    ring_flat = 1;
+    ring_wall_rad = 1.5;
+    ring_rad = finger_rad+ring_wall_rad;
+    ring_step = 20;
+    ring_flat = 1;
+    
+        difference(){
+        union(){
+            for(i=[-180+open_angle:ring_step:180-open_angle-ring_step]){
+                hull(){
+                    rotate([0,0,i]) translate([ring_rad,0,0]) scale([1,1,(ring_thick/2+ring_flat/2)/ring_wall_rad]) sphere(r=ring_wall_rad, $fn=12);
+                    rotate([0,0,i+ring_step]) translate([ring_rad,0,0]) scale([1,1,(ring_thick/2+ring_flat/2)/ring_wall_rad]) sphere(r=ring_wall_rad, $fn=12);
+                }
+            }
+            
+            //Nova Labs peg to put the ring onto
+            //kinda need it to be pretty big to work at all
+            *translate([ring_rad+5,0,0])
+            union(){
+                minkowski(){
+                    rotate([0,-90,0]) translate([.25,0,0]) rotate([0,0,26+90]) linear_extrude(height=1, center=true){
+                    scale([sc,sc,sc]) translate([0,-21.5,0]) import("nova-labs_icon.dxf", layer="gear");
+                    }
+                    sphere(r=.25, $fn=8);
+                }
+        
+                rotate([0,-90,0]) translate([.25,0,0]) rotate([0,0,26+90]) linear_extrude(height=5){
+                scale([sc,sc,sc]) translate([0,-21.5,0]) import("nova-labs_icon.dxf", layer="gear");
+                }
+            }
+            
+            
+            
         }
         
         for(i=[0,1]) mirror([0,0,i]) translate([0,0,50+ring_thick/2]) cube([100,100,100], center=true);

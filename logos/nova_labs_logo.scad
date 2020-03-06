@@ -1,5 +1,5 @@
 
-scale([1.5,1.5,1.5]) logo();
+scale([1.5,1.5,1.5]) bowl();
 
 sc = .1;
 base_thick = 1.5;
@@ -14,6 +14,16 @@ module tall_logo(h = 5){
     scale([1,1,h+.1]) base();
 }
 
+module bowl(){
+    scale([3,3,8]) difference(){
+        union(){
+            base(sphere_scale = [3,3,1]);
+            translate([-.1,2.1,0]) cylinder(r=5, h=2);
+        }
+        translate([0,0,10+1]) cube([20,20,20], center=true);
+    }
+}
+
 module logo(){
     union(){
         base();
@@ -24,14 +34,14 @@ module logo(){
     }
 }
 
-module base(){
+module base(sphere_scale = scale([2,2,1])){
     sphere_rad = 1;
     minkowski(){
         linear_extrude(height=base_thick-sphere_rad){
             scale([sc,sc,sc]) import("nova-labs_icon.dxf");
         }
         //cylinder(r1=1, r2=.5, h=base_thick/2, $fn=12);
-        scale([2,2,1]) sphere(r=sphere_rad/2, $fn=6);
+        scale(sphere_scale) sphere(r=sphere_rad/2, $fn=6);
     }
 }
 
