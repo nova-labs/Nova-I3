@@ -1,6 +1,6 @@
 use <pins2.scad>
 in = 25.4;
-part = 5;
+part = 1;
 
 if(part == 0)
     top_shaft();
