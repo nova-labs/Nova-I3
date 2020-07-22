@@ -9,10 +9,10 @@ motor_shaft_rad = 5/2+.2;
 
 drive_shaft_rad = 25.4/2/2+.2;
 
-small_teeth = 9;
-big_teeth = 47;
+small_teeth = 8;
+big_teeth = 59;
 gear_thick = 13;
-distance_between_axles = 50;
+distance_between_axles = 59;
 
 circular_pitch = 360*distance_between_axles/(small_teeth+big_teeth);
 
@@ -41,7 +41,7 @@ module assembled(){
 }
 
 module motor_drive_gear(){
-    translate([distance_between_axles+1,0,0]) gear1(gear1_teeth = small_teeth, circular_pitch=circular_pitch, gear_height=gear_thick);
+    translate([distance_between_axles+1,0,0]) rotate([0,0,180/8]) gear1(gear1_teeth = small_teeth, circular_pitch=circular_pitch, gear_height=gear_thick);
 }
 
 module roller_drive_gear(wall = 3){

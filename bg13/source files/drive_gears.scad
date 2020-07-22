@@ -12,8 +12,9 @@ drive_shaft_rad = 25.4/2/2+.2;
 small_teeth = 8;
 big_teeth = 59;
 gear_thick = 13;
-
 distance_between_axles = 59;
+
+
 circular_pitch = 360*distance_between_axles/(small_teeth+big_teeth);
 
 part = 2;
