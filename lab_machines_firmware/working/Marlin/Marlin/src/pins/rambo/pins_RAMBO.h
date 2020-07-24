@@ -83,17 +83,17 @@
 #define Y_DIR_PIN          49
 #define Y_ENABLE_PIN       28
 
-#define Z_STEP_PIN         35
-#define Z_DIR_PIN          47
-#define Z_ENABLE_PIN       27
+#define Z_STEP_PIN         33  // 35
+#define Z_DIR_PIN          42  // 47 - swapping Z and E1, because the Z driver died :-(
+#define Z_ENABLE_PIN       25  // 27
 
 #define E0_STEP_PIN        34
 #define E0_DIR_PIN         43
 #define E0_ENABLE_PIN      26
 
-#define E1_STEP_PIN        33
-#define E1_DIR_PIN         42
-#define E1_ENABLE_PIN      25
+#define E1_STEP_PIN        35  // 33
+#define E1_DIR_PIN         47  // 42 - the comments are the original values.
+#define E1_ENABLE_PIN      27  // 25
 
 // Microstepping pins - Mapping not from fastio.h (?)
 #define X_MS1_PIN          40
