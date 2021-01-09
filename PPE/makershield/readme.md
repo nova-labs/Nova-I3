@@ -51,7 +51,10 @@ Here are the parts we are using:
 You can substitute any suitable material for the inlet filter on the cylinder - it's got a ton of surface area.
 
 <h2> Assembly </h2>
+
 ![All the Parts laid out](https://github.com/nova-labs/Nova-I3/blob/master/PPE/makershield/pictures/assembly%202.jpg)
+
+
 The fans we linked above include nice long screws - perfect to sandwich the fan, filter and outlet duct.  Make sure the filter and outlet have the belt clip on the same side.
 
 
