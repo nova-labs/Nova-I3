@@ -2,6 +2,9 @@
 
 The MakerShield is a PAPR style fully filtered face shield.  PAPR stands for Powered Air Purifying Respirator - so this shield has an external fan pack which blows filtered air into the face shield.
 
+![test wear](https://github.com/nova-labs/Nova-I3/blob/master/PPE/makershield/pictures/full%20test.jpg)
+
+
 <h2> The Shield </h2>
 The shield itself is based on Prusa's face shield, but it is sealed with a plastic plenum on top and a wraparound fabric filter around the bottom and sides of the shield.
 
@@ -46,4 +49,9 @@ Here are the parts we are using:
  ** https://smile.amazon.com/gp/product/B07YB9K7WJ/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1
  
 You can substitute any suitable material for the inlet filter on the cylinder - it's got a ton of surface area.
+
+<h2> Assembly </h2>
+![All the Parts laid out](https://github.com/nova-labs/Nova-I3/blob/master/PPE/makershield/pictures/assembly%202.jpg)
+The fans we linked above include nice long screws - perfect to sandwich the fan, filter and outlet duct.  Make sure the filter and outlet have the belt clip on the same side.
+
 
