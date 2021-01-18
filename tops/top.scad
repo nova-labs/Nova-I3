@@ -1,6 +1,6 @@
 use <pins2.scad>
 in = 25.4;
-part = 1;
+part = 0;
 
 if(part == 0)
     top_shaft();
@@ -8,11 +8,31 @@ if(part == 0)
 if(part == 1)
     top_base();
 
-if(part == 2)
+if(part == 2){
     difference(){
-        pinpeg(r=pin_rad,l=pin_len,d=3,nub=pin_nub,t=pin_thick,space=slop);
-        for(i=[0,1]) mirror([0,0,i]) translate([0,0,pin_rad+25-1.5]) cube([50,50,50], center=true);
+        union(){
+            pinpeg(r=pin_rad,l=pin_len,d=3,nub=pin_nub,t=pin_thick,space=slop);
+            rotate([90,0,0]) cylinder(r1=pin_rad-slop, r2=pin_rad-1, h=30, $fn=36);
+            translate([0,-30,0]) sphere(r=pin_rad-1, $fn=80);
+            rotate([-90,0,0]) hull(){
+                translate([0,0,0]) cylinder(r=pin_rad, h=2);
+                translate([0,0,.5]) cylinder(r=pin_rad+2, h=2);
+                translate([0,0,8.75]) sphere(r=pin_rad-slop);
+            }
+        }
+        hull(){
+            for(i=[-1,1]) translate([0,i*8,0]){
+                cylinder(r=1.35, h=10, center=true);
+            }
+        }
+        for(i=[0,1]) mirror([0,0,i]) translate([0,0,pin_rad+25-1.2]) cube([100,100,50], center=true);
     }
+    
+    %translate([0,-.3,0]) difference(){
+        rotate([90,0,0]) top_shaft();
+        translate([0,0,50]) cube([100,100,100], center=true);
+    }
+}
     
 if(part == 3)
     laser_template();
@@ -30,8 +50,10 @@ if(part == 10)
 
 shaft_rad = 8;
 shaft_length = 30;
-base_rad = 17;
+base_rad = 27;
 base_height = 19;
+
+font = "Futura Heavy:style=Regular";
 
 
 module assembled(){
@@ -54,6 +76,8 @@ pin_nub = .4;
 pin_thick = 1.9;
 pin_pre = .1;
 
+spin_rad = 3;
+
 gap = 0;
 
 slop = .25;
@@ -70,16 +94,16 @@ module laser_template(){
 }
 
 module gear_text(gear_h = 7){
-    gear_outer_rad = 19;
+    gear_outer_rad = 27;
     
     teeth = 13; // n o v a - l a b s . o r g
     
     words = "NOVA-Labs.org";
     
-    tooth_rad = 2;
+    tooth_rad = 3;
     tooth_stretch = 1.3;
     min_rad = .5;
-    font_size = gear_h-min_rad*2;
+    font_size = gear_h-1;
     
     difference(){
         union(){
@@ -95,17 +119,18 @@ module gear_text(gear_h = 7){
                 }
                 sphere(r=min_rad, $fn=8);
             }
+        }
             
             //put some text in
-            for(i=[0:teeth]) rotate([0,0,180/teeth+i*360/teeth]) translate([gear_outer_rad*cos(180/teeth)-min_rad, 0, 0]) {
-                minkowski(){
+            for(i=[0:teeth]) rotate([0,0,180/teeth+i*360/teeth]) translate([gear_outer_rad*cos(180/teeth)+.0, 0, 0]) {
+                //minkowski(){
                     rotate([90,0,0]) rotate([0,90,0]) linear_extrude(height=1){
-                        text(words[i], halign="center", valign="center", size=font_size);
+                        text(words[i], font = font, halign="center", valign="center", size=font_size);
                     }
-                    sphere(r=min_rad, $fn=8);
-                }
+                //    sphere(r=min_rad, $fn=8);
+                //}
             }
-        }
+        
     }
 }
 
@@ -135,24 +160,42 @@ module top_base(){
 
 module top_shaft(){
     torus_rad = 11;
+    gear_h = 7;
     rotate([-90,0,0]) difference(){
         union(){
             //pinpeg(r=pin_rad,l=pin_len,d=3,nub=pin_nub,t=pin_thick,space=slop);
             translate([0,-gap/2,0]) rotate([90,0,0]) rotate([0,0,15]) cylinder(r=shaft_rad, h=shaft_length);
-            translate([0,-shaft_length-gap/2,0]) sphere(r=pin_rad);
+            translate([0,-shaft_length-gap/2,0]) sphere(r=spin_rad);
+            
+            rotate([90,0,0]) translate([0,0,gear_h/2]) rotate([0,0,0]) gear_text(gear_h = gear_h);
         }
         
         //cutout a torus
-        translate([0,-shaft_length*.6-gap/2,0]) rotate([90,0,0]) scale([1,1,(shaft_length*.6+gap/2)/torus_rad]) rotate_extrude() hull(){
-            translate([pin_rad+torus_rad, 0, 0]) circle(r=torus_rad);
-            translate([pin_rad+torus_rad, shaft_length, 0]) circle(r=torus_rad);
+        translate([0,-shaft_length*.6-gap/2+gear_h/2+2,0]) rotate([90,0,0])  rotate_extrude() hull(){   //scale the torus? scale([1,1,(shaft_length*.6+gap/2)/torus_rad])
+            translate([spin_rad+torus_rad, 0, 0]) circle(r=torus_rad);
+            translate([spin_rad+torus_rad, shaft_length, 0]) circle(r=torus_rad);
         }
         
         rotate([90,0,0]) pinhole(r=pin_rad,l=pin_len,nub=pin_nub,fixed=true,fins=true);
+        rotate([-90,0,0]) pinhole(r=pin_rad,l=pin_len,nub=pin_nub,fixed=true,fins=true);
+        
         //flange the pinhole for easy entry
-        rotate([90,0,0]) translate([0,0,-.1]) sphere(r=pin_rad+.5, $fn=6);
+        hull(){
+            translate([0,-.5,0])rotate([-90,0,0]) pinhole(r=pin_rad,l=pin_len,nub=pin_nub,fixed=true,fins=true);
+            translate([0,1,0]) rotate([-90,0,0]) pinhole(r=pin_rad+2,l=pin_len,nub=pin_nub,fixed=true,fins=true);
+            
+        }
+        
+        //bore through for the shaft
+        //rotate([90,0,0]) cylinder(r=pin_rad, h=100, center=true);
+        
+        //cut off the top
+        rotate([90,0,0]) translate([0,0,gear_h]) cylinder(r=pin_rad*2, h=100);
         
         //for(i=[0,1]) mirror([0,0,i]) translate([0,0,50+pin_rad-.75]) cube([100,100,100], center=true); 
+        
+        //cut in half to view how the hole looks
+        //translate([0,0,50]) cube([100,100,100], center=true);
     }
 }
 

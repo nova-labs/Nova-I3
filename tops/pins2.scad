@@ -18,7 +18,7 @@ snap=0.4;
 //Put fins on pinhole to help with printing strength
 fins=1;//[1:yes,0:no]
 
-$fn=6;
+$fn=36;
 
 //if(object==0)
     pinpeg(r=diameter/2,l=length,d=2.5-preload,nub=snap,t=thickness,space=clearance);
@@ -26,7 +26,7 @@ $fn=6;
     %pinhole(r=diameter/2,l=length,nub=snap,fixed=hole_twist,fins=fins);
 
 //pin(flat=0);
-//%pinhole(fixed=true);
+pinhole(fixed=true);
 
 //pinpeg();
 //translate([10,0,0])difference(){
@@ -75,7 +75,7 @@ intersection(){
 			cube([0.01,2*r,2*r],center=true);
 		}
 	}
-	*if(fixed)cube([3*r,r*sqrt(2),2*l+3*r],center=true);
+	if(fixed)cube([3*r,r*sqrt(2),2*l+3*r],center=true);
 }
 
 module pinpeg(r=3.5,l=13,d=2.4,nub=0.4,t=1.8,space=0.3)
