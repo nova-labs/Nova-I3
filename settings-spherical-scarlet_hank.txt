@@ -1,0 +1,15 @@
+Email Address: paenian@gmail.com
+Picture: PXL_20210607_162249597.jpg
+Lithophane Resolution: 0.2
+Sphere Diameter: 140
+Picture Angular Height: 119.07
+Picture Angular Width: 360.00
+Maximum Thickness: 2.7
+Minimum Thickness: 0.6
+Cylinder Outer Diameter: 90
+Cylinder Height: 25
+Cylinder Thickness: 4
+Cylinder Ledge Outer Diameter: 92
+Top Hole Outer Diameter: 50
+X Shift: 0.00
+Y Shift: 0.4
